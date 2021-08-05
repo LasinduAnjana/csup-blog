@@ -1,13 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.postcard {
+  padding: 10px;
+  margin: 10px;
+  float: left;
+  justify-content: flex-start;
+  width: 300px;
+  height: 25rem;
+  background-color: azure;
+  border-radius: 15px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.postcard:hover {
+  transform: scale(1.05);
+}
+
+.card-image {
+  width: 280px;
+  height: 180px;
+  border-radius: 15px;
+}
+
+.blog-body {
+  padding-top: 75px;
+  justify-content: space-between;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-author {
+  text-align: right;
+}
+
+.post-row {
+  padding-top: 2%;
+}
+
+.post-page {
+  background-color: azure;
+  border-radius: 25px;
+  padding: 5%;
+  justify-content: center;
+}
+
+.post-image {
+  width: 100%;
+  border-radius: 25px;
+}
+
+.post-title {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.title-text {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  padding: 30px;
+  font-size: 35px;
+}
+
+.navbar-style {
+  background-color: aqua;
+}
+
+.footer {
+  background-color: aqua;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }
