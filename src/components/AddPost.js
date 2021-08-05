@@ -60,7 +60,7 @@ const AddPost = ({onPost}) => {
                             id="imgUrl-input" 
                             placeholder="" 
                             value={imgUrl}
-                            onChange={(e) => setTitle(e.target.value)} />
+                            onChange={(e) => setimgUrl(e.target.value)} />
                     </div>
                 </div>
                 <div className="row mb-3">
