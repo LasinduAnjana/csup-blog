@@ -1,21 +1,42 @@
 import React from 'react'
 import {FaTimes} from 'react-icons/fa'
+import { useHistory, useParams } from 'react-router-dom'
+import useFetch from './useFetch';
 
-const post = ({post, onDelete, closePost}) => {
+function Post() {
+
+    const history = useHistory();
+    const { id } = useParams();
+    const { data: postdata } = useFetch('https://jsonplaceholder.typicode.com/posts/' + id);
+    console.log(postdata)
+
+    const onDelete = () => {
+        fetch(('https://jsonplaceholder.typicode.com/posts/' + id), {
+            method: 'DELETE',
+        });
+        alert("post deleted");
+        history.push('/');
+    }
+
     return (
         <div className="container post-page">
-            <div className="post-title">
-            <h2>{post.title} </h2><FaTimes style={{color:'red', cursor:'pointer'}} onClick={closePost}/>
-            </div>
             
-            <hr />
-            <img className="post-image" src={post.imgUrl} />
-            <p>{post.author}</p>
-            <p>{post.body}</p>
+            {postdata && (
+                <>
+                    <div className="post-title">
+                    <h3>{postdata.title} <FaTimes style={{color:'red', cursor:'pointer'}} onClick={() => history.push('/')}/></h3>
+                    </div>
+                    
+                    <hr />
+                    <img className="post-image" src="https://picsum.photos/300/200" />
+                    <p>{postdata.userId}</p>
+                    <p>{postdata.body}</p>
 
-            <button className="btn btn-danger" onClick={() => onDelete(post.id)}>Delete</button>
+                    <button className="btn btn-danger" onClick={onDelete}>Delete</button>
+                </>
+            )}
         </div>
     )
 }
 
-export default post
+export default Post

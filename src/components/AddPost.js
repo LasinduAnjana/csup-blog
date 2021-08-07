@@ -1,27 +1,42 @@
 import React from 'react'
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
 
-const AddPost = ({onPost}) => {
+const AddPost = () => {
 
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [body, setBody] = useState("");
-    const [imgUrl, setimgUrl] = useState("")
+
+    const history = useHistory();
 
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if(!author || !title || !body || !imgUrl) {
+        if(!author || !title || !body) {
             alert("Please fill all feilds")
             return
         }
-        onPost({author, title, body, imgUrl});
+        const newPost = {author, title, body};
+
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify(newPost),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json)
+                history.push('/');
+            })
+            .catch((err) => console.log(err))
 
         setTitle("")
         setAuthor("")
         setBody("")
-        setimgUrl("")
     }
 
     return (
@@ -50,17 +65,6 @@ const AddPost = ({onPost}) => {
                             value={author}
                             onChange={(e) => setAuthor(e.target.value)} />
                             
-                    </div>
-                </div>
-                <div className="row mb-3">
-                    <label for="imgUrl-input" className="col-sm-2 col-form-label col-form-label">Image url : </label>
-                    <div className="col-sm-10">
-                        <input type="text" 
-                            className="form-control form-control" 
-                            id="imgUrl-input" 
-                            placeholder="" 
-                            value={imgUrl}
-                            onChange={(e) => setimgUrl(e.target.value)} />
                     </div>
                 </div>
                 <div className="row mb-3">
